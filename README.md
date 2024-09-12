@@ -18,45 +18,38 @@ Voyage is a lightweight and easy-to-use web framework for Python, designed for b
    git clone https://github.com/Adyaanismyname/Voyage.git
 
 
-#Quick Start
+# Quick Start
 
 Here's a simple example of how to use the Voyage framework:
 
 ```python
-from Voyage import App, read_files
+from Voyage.App import App
+from Voyage.Serve import read_html
 
-# Initialize the app
+
 app = App()
 
-# Define the home route
+
 @app.route('/home/')
 def home():
-    # Serve an HTML file for the home page
-    return read_files.read_html('home.html')
+  return read_html('home.html')
 
-# Define the about route with a dynamic ID parameter
 @app.route('/about/<id>')
 def about(id):
-    # Return a message that includes the provided ID
-    return f"Welcome to the Voyage framework! Your ID is {id}"
+  return f"Welcome to framework lol , id = {id}"
 
-# Define the search route with query parameters
 @app.route('/search')
 def search(query_params):
-    # Extract the 'query' parameter from the URL
-    search_query = query_params.get('query', [''])[0]
-    # Return a message that includes the search query
-    return f"You searched for: {search_query}"
+  search_query = query_params.get('query' , [''])[0]
+  return f"You searched for {search_query}"
 
-# Define a route that demonstrates rerouting
 @app.route('/reroute/home/')
 def reroute_to_home():
-    # Reroute to the home page
-    return app.reroute('/home/')
+  return app.reroute('/home/')
 
-# Run the application
-if __name__ == "__main__":
-    app.run()
+app.run()
+
+
 ```
 Here’s a breakdown of the key features:
 
